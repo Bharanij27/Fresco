@@ -1,0 +1,47 @@
+<!DOCTYPE html >
+
+    <th:block th:insert="fragments/head::head(${pageTitle})"></th:block>
+    <!-- auth css -->
+    <link rel="stylesheet" href="css/auth.css" />
+    
+</head>
+  <body>
+
+    <div th:insert="fragments/navbar :: navbar(${isLoggedIn})"></div>
+
+    <div class="columns is-centered">
+        <div class="login column is-4 ">
+            <form class="section" method="POST" action="/signin">
+    
+              <div class="field">
+                <label class="label">Username</label>
+                <div class="control has-icons-right">
+                  <input class="input" name="username" type="email" required>
+                  <span class="icon is-small is-right">
+                    <i class="fa fa-user"></i>
+                  </span>
+                </div>
+              </div>
+    
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control has-icons-right">
+                  <input class="input" name="password" type="password" required>
+                  <span class="icon is-small is-right">
+                    <i class="fa fa-key"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="has-text-centered">
+                <button type="submit" class="button is-vcentered is-info is-outlined">Login</button>
+              </div>
+              <div class="has-text-centered">
+                <a href="/register"> Don't you have an account? Register now!</a>
+              </div>
+            </form>
+          </div>
+    </div>
+
+      <div th:insert="fragments/footer :: footer"></div>
+  </body>
+</html>

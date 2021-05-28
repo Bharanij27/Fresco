@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+
+    <th:block th:insert="fragments/head::head(${pageTitle})"></th:block>
+
+    <!-- page css -->
+    <link rel="stylesheet" href="css/products.css" />
+    <!-- product page script -->
+    <script defer src="js/product.js"></script>
+
+</head>
+
+<body>
+
+    <div th:insert="fragments/navbar :: navbar(${isLoggedIn})"></div>
+    <h1 class="title is-4 mt-5 ml-4" th:text="${pageTitle}"></h1>
+    <div class="items-tile">
+        <div class="card" style="box-shadow: none;" th:each="product:${products}">
+            <div class="card-image">
+                    <img loading="lazy" th:alt="${product.name+' image'}" th:src="${product.imageURL}">
+              </div>        
+            <div class="card-content">
+              <div class="content">
+                <p th:text="${product.name}" class="title is-size-5"></p>
+                <p th:text="${product.description}"></p>
+                <br>
+              </div>
+            </div>
+            <footer class="card-footer">
+                <p class="card-footer-item">Price</p>
+                <p class="card-footer-item"><span  th:text="${product.price}"></span> <span>&#8377;</span> </p>
+            </footer>
+            <footer class="card-footer">
+                <a th:href="${path+'/addtocart?id='+product.id}" class="card-footer-item" id="addtocartbutton">Add To Cart</a>
+            </footer>
+          </div>
+    </div>
+    <div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

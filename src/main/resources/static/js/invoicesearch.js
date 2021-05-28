@@ -1,0 +1,1 @@
+UIkit.container = document.querySelector('.uk-scope');

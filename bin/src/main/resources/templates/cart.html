@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<th:block th:insert="fragments/head::head('Shopping Cart')"></th:block>
+<!-- cart css -->
+<link rel="stylesheet" href="css/cart.css" />
+<!-- modal css -->
+<link rel="stylesheet" href="css/checkoutmodal.css">
+
+<!-- scripts -->
+<script defer src="js/cart.js"></script>
+
+
+
+
+
+  <style>
+    body{
+      padding-left: 3rem;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div th:insert="fragments/navbar :: navbar(${isLoggedIn})"></div>
+  <h1 class="title is-4 mt-5 ml-4">Shopping Cart</h1>
+
+  <th:block th:switch="${isCartEmpty}">
+    <div class="empty-cart" th:case="true">
+      <img id="empty_cart_img" loading="lazy" src="images/no_orders.webp" alt="empty_cart_img" />
+      <p class="title is-size-3">Your cart is empty</p>
+      <p class="title is-size-5">Explore our products</p>
+      <a href="/"><button class="explore-button button">Explore</button></a>
+    </div>
+    <div class="shopping-cart p-5" th:case="false">
+
+      <div class="column-labels">
+        <label class="product-image">Image</label>
+        <label class="product-details">Product</label>
+        <label class="product-price">Price</label>
+        <label class="product-quantity">Quantity</label>
+        <label class="product-removal">Remove</label>
+        <label class="product-line-price">Total</label>
+      </div>
+
+
+      <div class="product" th:each="item : ${cart.cartItems}">
+        <div class="product-image">
+          <img th:src="${item.imageURL}">
+        </div>
+        <div class="product-details">
+          <div class="product-title" th:text="${item.name}"></div>
+          <p class="product-description" th:text="${item.description}"></p>
+        </div>
+        <div class="product-price" th:text="${item.price}"></div>
+        <div class="product-quantity">
+          <input id="product-quantity-input" th:data-itemid="${item.id}" type="number" th:value="${''+item.quantity}"
+            min="1">
+        </div>
+        <div class="product-removal">
+          <button class="remove-product" th:value="${item.id}">
+            Remove
+          </button>
+        </div>
+        <div class="product-line-price" th:text="${item.price}"></div>
+      </div>
+
+      <div class="totals">
+        <div class="totals-item">
+          <label>Subtotal</label>
+          <div class="totals-value" id="cart-subtotal">0</div>
+        </div>
+        <div class="totals-item">
+          <label>Tax (5%)</label>
+          <div class="totals-value" id="cart-tax">0</div>
+        </div>
+        <div class="totals-item">
+          <label>Shipping</label>
+          <div class="totals-value" id="cart-shipping">0</div>
+        </div>
+        <div class="totals-item totals-item-total">
+          <label>Grand Total</label>
+          <div class="totals-value" id="cart-total">0</div>
+        </div>
+      </div>
+      <!-- <button data-micromodal-trigger="modal-1">Modal</button> -->
+      <!-- <a href="/getinvoice"><button  type="submit" class="checkout">Checkout</button></a> -->
+      <button data-micromodal-trigger="modal-1"  type="submit" class="checkout">Checkout</button>
+    </div>
+  </th:block>
+
+  <div th:insert="fragments/checkoutmodal :: checkoutmodal"></div>
+  <div th:insert="fragments/footer :: footer"></div>
+
+<!-- third party scripts -->
+<!-- micromodaljs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/micromodal/0.4.6/micromodal.min.js"
+integrity="sha512-RMMh+IHzfZLsVFo1rX9PBoysxrJJqjyOS31HYWftobWtv2At6KBTqKpvVDIWAjL5aiV+LjFqkQ6e53Rdw3VOBg=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- checkout script -->
+<script src="js/checkout.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html >
+
+    <th:block th:insert="fragments/head::head(${pageTitle})"></th:block>
+  
+    </head>
+    <body>
+        <div th:insert="fragments/navbar :: navbar(${isLoggedIn})"></div>
+        <h1 class="title is-4 mt-5 ml-4" style="text-align: center;">Add Product</h1>
+        <div class="columns is-centered">
+            <form action="/addproduct" method="POST" class="column is-half">
+
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                      <input class="input" type="text" name="name" placeholder="Mango">
+                    </div>
+                  </div>
+        
+                  <div class="field">
+                    <label class="label">Category</label>
+                    <div class="control">
+                      <input class="input" type="text" name="category" placeholder="fruit">
+                    </div>
+                  </div>
+                  
+                  <div class="field">
+                    <label class="label">Price</label>
+                    <div class="control">
+                      <input class="input" type="number" name="price" placeholder="150">
+                    </div>
+                  </div>
+        
+                  <div class="field">
+                    <label class="label">Image URL</label>
+                    <div class="control">
+                      <input class="input" type="text" name="imageURL">
+                    </div>
+                  </div>
+        
+                  <div class="field">
+                    <label class="label">Description</label>
+                    <div class="control">
+                      <textarea class="textarea" name="description" placeholder="A wonderful product"></textarea>
+                    </div>
+                  </div>
+        
+                  <div class="field">
+                    <p class="control">
+                      <button type="submit" class="button is-primary is-light">
+                        Add Product
+                      </button>
+                    </p>
+                  </div>
+    
+            </form>
+    
+        </div>
+
+        
+        <div th:insert="fragments/footer :: footer"></div>
+    </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
